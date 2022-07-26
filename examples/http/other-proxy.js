@@ -19,10 +19,22 @@ http.createServer(function (req, res) {
       followRedirects: true,
       autoRewrite: true,
       changeOrigin: true,
-      ///selfHandleResponse: true,
+      selfHandleResponse: true,
     });
   }, 200);
 }).listen(process.env.PORT || 3000);
+
+proxy.on('proxyRes', function (proxyRes, req, res) {
+	var body = [];
+	proxyRes.on('data', function (chunk) {
+		body.push(chunk);
+	});
+	proxyRes.on('end', function () {
+		body = Buffer.concat(body).toString();
+		console.log("res from proxied server:", body);
+		res.end("my response to cli");
+	});
+});
 
 //
 // Target Http Server (old)
