@@ -24,8 +24,7 @@
 
 */
 
-var util = require('util'),
-    http = require('http'),
+var http = require('http'),
     httpProxy = require('../../lib/http-proxy');
 
 //
@@ -49,5 +48,5 @@ http.createServer(function (req, res) {
   res.end();
 }).listen(9002);
 
-util.puts('http server ' + 'started ' + 'on port ' + '8002 ' + 'with proxy.web() handler' + ' and latency');
-util.puts('http server ' + 'started ' + 'on port ' + '9002 ');
+console.log('http server ' + 'started ' + 'on port ' + '8002 ' + 'with proxy.web() handler' + ' and latency');
+console.log('http server ' + 'started ' + 'on port ' + '9002 ');
