@@ -55,7 +55,9 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 		//console.log("res from proxied server:", body);
 		res.end(''+body);
 	});
-}).listen(process.env.PORT || 3000);
+});
+
+proxy.listen(process.env.PORT || 3000);
 
 //
 // Target Http Server (old)
