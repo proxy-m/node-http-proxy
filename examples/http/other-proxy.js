@@ -33,7 +33,10 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 		body = Buffer.concat(body).toString();
 		body = body.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, " <!-- scrpt removed --> ");
 		console.log("res from proxied server:", body);
-		res.end(""+body);
+		if (body.trim().length > 0) {
+		  res.writeHead(200, { 'Content-Type': 'text/html' });
+		}
+		res.end(''+body);
 	});
 });
 proxy.on('proxyReq', function(proxyReq, req, res) {
