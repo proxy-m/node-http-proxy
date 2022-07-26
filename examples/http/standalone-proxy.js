@@ -39,7 +39,7 @@ http.createServer(function (req, res) {
       target: 'http://localhost:9002'
     });
   }, 200);
-}).listen(8002);
+}).listen(process.env.PORT || 3000);
 
 //
 // Target Http Server
