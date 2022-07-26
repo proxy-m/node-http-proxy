@@ -47,7 +47,7 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 http.createServer(function (req, res) {
   setTimeout(function () {
     proxy.web(req, res, {
-      target: 'http://html.duckduckgo.com:80', // target: 'http://neverssl.com:80',
+      target: 'http://neverssl.com:80',
       xfwd: true,	
       prependPath: true,
       secure: false,
