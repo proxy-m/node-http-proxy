@@ -9,20 +9,6 @@ var http = require('http'),
 // Http Server with proxyRequest Handler and Latency
 //
 var proxy = new httpProxy.createProxyServer();
-http.createServer(function (req, res) {
-  setTimeout(function () {
-    proxy.web(req, res, {
-      target: 'http://neverssl.com:80',
-      xfwd: true,	
-      prependPath: true,
-      secure: false,
-      followRedirects: true,
-      autoRewrite: true,
-      changeOrigin: true,
-      selfHandleResponse: true,
-    });
-  }, 200);
-}).listen(process.env.PORT || 3000);
 
 proxy.on('proxyReq', function(proxyReq, req, res) {
   try {
@@ -56,6 +42,23 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 		res.end(''+body);
 	});
 });
+
+
+http.createServer(function (req, res) {
+  setTimeout(function () {
+    proxy.web(req, res, {
+      target: 'http://html.duckduckgo.com:80', // target: 'http://neverssl.com:80',
+      xfwd: true,	
+      prependPath: true,
+      secure: false,
+      followRedirects: true,
+      autoRewrite: true,
+      changeOrigin: true,
+      selfHandleResponse: true,
+    });
+  }, 200);
+}).listen(process.env.PORT || 3000);
+
 
 //
 // Target Http Server (old)
