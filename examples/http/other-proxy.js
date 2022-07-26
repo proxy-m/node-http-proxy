@@ -36,7 +36,7 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 	        body = body.replace(/<noscript>/gi, '<p class="noscript">');
 		//console.log("res from proxied server:", body);
 		if (body.trim().length > 0) {
-		  res.writeHead(200, { 'Content-Type': 'text/html' });
+		  res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
 		}
 		res.end(''+body);
 	});
@@ -49,11 +49,11 @@ proxy.on('proxyReq', function(proxyReq, req, res) {
 //
 // Target Http Server (old)
 //
-http.createServer(function (req, res) {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.write('request successfully proxied to: ' + req.url + '\n' + JSON.stringify(req.headers, true, 2));
-  res.end();
-}).listen(9002);
+//http.createServer(function (req, res) {
+//  res.writeHead(200, { 'Content-Type': 'text/plain' });
+//  res.write('request successfully proxied to: ' + req.url + '\n' + JSON.stringify(req.headers, true, 2));
+//  res.end();
+//}).listen(9002);
 
 console.log('http server ' + 'started ' + 'on port ' + '8002 ' + 'with proxy.web() handler' + ' and latency');
 console.log('http server ' + 'started ' + 'on port ' + '9002 ');
