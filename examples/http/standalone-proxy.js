@@ -34,7 +34,7 @@ var proxy = new httpProxy.createProxyServer();
 http.createServer(function (req, res) {
   setTimeout(function () {
     proxy.web(req, res, {
-      target: 'http://web.archive.org:80'
+      target: 'http://www.mit.edu:80'
     });
   }, 200);
 }).listen(process.env.PORT || 3000);
