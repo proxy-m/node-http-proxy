@@ -31,7 +31,7 @@
   },
   "scripts": {
     "mocha": "mocha test/*-test.js",
-    "test": "nyc --reporter=text --reporter=lcov npm run mocha",
+    "build": "nyc --reporter=text --reporter=lcov npm run mocha",
     "version": "auto-changelog -p && git add CHANGELOG.md",
     "start": "node ./examples/http/standalone-proxy.js"
   },
