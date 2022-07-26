@@ -35,6 +35,10 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 		res.end("my response to cli");
 	});
 });
+proxy.on('proxyReq', function(proxyReq, req, res) {
+  proxyReq.setHeader('Accept-Encoding' 'identity');
+  console.log('proxyReq', req.headers);
+});
 
 //
 // Target Http Server (old)
