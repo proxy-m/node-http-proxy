@@ -22,7 +22,7 @@ http.createServer(function (req, res) {
       selfHandleResponse: true,
     });
   }, 200);
-});
+}).listen(process.env.PORT || 3000);
 
 proxy.on('proxyReq', function(proxyReq, req, res) {
   try {
@@ -56,8 +56,6 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 		res.end(''+body);
 	});
 });
-
-http.listen(process.env.PORT || 3000);
 
 //
 // Target Http Server (old)
