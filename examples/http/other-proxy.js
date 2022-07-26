@@ -36,7 +36,7 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 	});
 });
 proxy.on('proxyReq', function(proxyReq, req, res) {
-  proxyReq.setHeader('Accept-Encoding' 'identity');
+  proxyReq.setHeader('Accept-Encoding', 'identity');
   console.log('proxyReq', req.headers);
 });
 
