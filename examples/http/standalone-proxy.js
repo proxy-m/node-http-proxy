@@ -34,13 +34,13 @@ var proxy = new httpProxy.createProxyServer();
 http.createServer(function (req, res) {
   setTimeout(function () {
     proxy.web(req, res, {
-      target: 'http://localhost:9002'
+      target: 'https://bing.com:443'
     });
   }, 200);
 }).listen(process.env.PORT || 3000);
 
 //
-// Target Http Server
+// Target Http Server (old)
 //
 http.createServer(function (req, res) {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
