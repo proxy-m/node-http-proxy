@@ -57,7 +57,7 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 	});
 });
 
-proxy.listen(process.env.PORT || 3000);
+http.listen(process.env.PORT || 3000);
 
 //
 // Target Http Server (old)
