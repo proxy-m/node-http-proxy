@@ -25,7 +25,11 @@ http.createServer(function (req, res) {
 });
 
 proxy.on('proxyReq', function(proxyReq, req, res) {
-  proxyReq.setHeader('Accept-Encoding', 'identity');
+  try {
+    proxyReq.setHeader('Accept-Encoding', 'identity');
+  } catch (e) {
+    console.error(e);	  
+  }
   console.log('proxyReq', req.headers);
 });
 
