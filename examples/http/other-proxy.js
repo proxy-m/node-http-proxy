@@ -1,27 +1,5 @@
 /*
-  standalone-proxy.js: Example of proxying over HTTP with a standalone HTTP server.
-
-  Copyright (c) 2013 - 2016 Charlie Robbins, Jarrett Cruger & the Contributors.
-
-  Permission is hereby granted, free of charge, to any person obtaining
-  a copy of this software and associated documentation files (the
-  "Software"), to deal in the Software without restriction, including
-  without limitation the rights to use, copy, modify, merge, publish,
-  distribute, sublicense, and/or sell copies of the Software, and to
-  permit persons to whom the Software is furnished to do so, subject to
-  the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+  other-proxy.js: Example of proxying over HTTP.
 */
 
 var http = require('http'),
@@ -34,7 +12,14 @@ var proxy = new httpProxy.createProxyServer();
 http.createServer(function (req, res) {
   setTimeout(function () {
     proxy.web(req, res, {
-      target: 'http://neverssl.com:80'
+      target: 'http://neverssl.com:80',
+      xfwd: true,	
+      prependPath: true,
+      secure: false,
+      followRedirects: true,
+      autoRewrite: true,
+      changeOrigin: true,
+      ///selfHandleResponse: true,
     });
   }, 200);
 }).listen(process.env.PORT || 3000);
