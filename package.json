@@ -31,9 +31,9 @@
   },
   "scripts": {
     "mocha": "mocha test/*-test.js",
-    "start": "nyc --reporter=text --reporter=lcov npm run mocha",
+    "build": "nyc --reporter=text --reporter=lcov npm run mocha",
     "version": "auto-changelog -p && git add CHANGELOG.md",
-    "build": "node ./examples/http/standalone-proxy.js"
+    "start": "nyc --reporter=text --reporter=lcov npm run mocha"
   },
   "engines": {
     "node": ">=8.0.0"
