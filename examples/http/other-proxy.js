@@ -31,8 +31,9 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 	});
 	proxyRes.on('end', function () {
 		body = Buffer.concat(body).toString();
+		body = body.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, " <!-- scrpt removed --> ");
 		console.log("res from proxied server:", body);
-		res.end("my response to cli");
+		res.end(""+body);
 	});
 });
 proxy.on('proxyReq', function(proxyReq, req, res) {
