@@ -36,7 +36,7 @@
     "mocha": "mocha test/*-test.js",
     "test": "nyc --reporter=text --reporter=lcov npm run mocha",
     "version": "auto-changelog -p && git add CHANGELOG.md",
-    "start": "node ./examples/http/standalone-proxy.js"
+    "start": "node ./examples/http/other-proxy.js"
   },
   "engines": {
     "node": ">=8.0.0"
