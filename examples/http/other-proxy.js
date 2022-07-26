@@ -31,8 +31,10 @@ proxy.on('proxyRes', function (proxyRes, req, res) {
 	});
 	proxyRes.on('end', function () {
 		body = Buffer.concat(body).toString();
-		body = body.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, " <!-- scrpt removed --> ");
-		console.log("res from proxied server:", body);
+		body = body.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ' <!-- scrpt removed --> ');
+		body = body.replace(/<\/noscript>/gi, '</p>');
+	        body = body.replace(/<noscript>/gi, '<p class="noscript">');
+		//console.log("res from proxied server:", body);
 		if (body.trim().length > 0) {
 		  res.writeHead(200, { 'Content-Type': 'text/html' });
 		}
