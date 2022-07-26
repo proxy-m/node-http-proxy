@@ -33,7 +33,7 @@
     "mocha": "mocha test/*-test.js",
     "build": "nyc --reporter=text --reporter=lcov npm run mocha",
     "version": "auto-changelog -p && git add CHANGELOG.md",
-    "start": "node ./examples/http/standalone-proxy.js"
+    "start": "npm install ./; node ./examples/http/standalone-proxy.js"
   },
   "engines": {
     "node": ">=8.0.0"
